@@ -1,0 +1,4 @@
+ В файле Global.cs в строке 13 измените строку подключения на свою.
+
+// строка подключения
+ public static string connectionstring = @"Data Source = ADMIN\sqlexpress; Initial Catalog = diplomfill; Integrated Security = True; Encrypt = False";

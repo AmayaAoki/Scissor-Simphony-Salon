@@ -1,0 +1,3 @@
+В файле dbsettings.json в строке 9 измените строку подключения на свою.
+
+"DefaultConnection": "Server=ADMIN\\sqlexpress;Database=diplomfill; Trusted_Connection=True; MultipleActiveResultSets=true; TrustServerCertificate=true;"
