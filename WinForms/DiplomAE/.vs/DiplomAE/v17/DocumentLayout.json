@@ -1,0 +1,191 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\USER\\source\\repos\\DiplomAE\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{0098DE87-2870-4A69-B6C4-C18483A5A83E}|DiplomAE.csproj|c:\\users\\user\\source\\repos\\diplomae\\formadmin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{0098DE87-2870-4A69-B6C4-C18483A5A83E}|DiplomAE.csproj|solutionrelative:formadmin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0098DE87-2870-4A69-B6C4-C18483A5A83E}|DiplomAE.csproj|C:\\Users\\USER\\source\\repos\\DiplomAE\\formaddandfilter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0098DE87-2870-4A69-B6C4-C18483A5A83E}|DiplomAE.csproj|solutionrelative:formaddandfilter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0098DE87-2870-4A69-B6C4-C18483A5A83E}|DiplomAE.csproj|C:\\Users\\USER\\source\\repos\\DiplomAE\\formaddandfilter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{0098DE87-2870-4A69-B6C4-C18483A5A83E}|DiplomAE.csproj|solutionrelative:formaddandfilter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0098DE87-2870-4A69-B6C4-C18483A5A83E}|DiplomAE.csproj|C:\\Users\\USER\\source\\repos\\DiplomAE\\formemployee.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0098DE87-2870-4A69-B6C4-C18483A5A83E}|DiplomAE.csproj|solutionrelative:formemployee.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0098DE87-2870-4A69-B6C4-C18483A5A83E}|DiplomAE.csproj|C:\\Users\\USER\\source\\repos\\DiplomAE\\formadmin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0098DE87-2870-4A69-B6C4-C18483A5A83E}|DiplomAE.csproj|solutionrelative:formadmin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0098DE87-2870-4A69-B6C4-C18483A5A83E}|DiplomAE.csproj|C:\\Users\\USER\\source\\repos\\DiplomAE\\formemployee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{0098DE87-2870-4A69-B6C4-C18483A5A83E}|DiplomAE.csproj|solutionrelative:formemployee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0098DE87-2870-4A69-B6C4-C18483A5A83E}|DiplomAE.csproj|C:\\Users\\USER\\source\\repos\\DiplomAE\\global.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0098DE87-2870-4A69-B6C4-C18483A5A83E}|DiplomAE.csproj|solutionrelative:global.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0098DE87-2870-4A69-B6C4-C18483A5A83E}|DiplomAE.csproj|C:\\Users\\USER\\source\\repos\\DiplomAE\\formemployee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0098DE87-2870-4A69-B6C4-C18483A5A83E}|DiplomAE.csproj|solutionrelative:formemployee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0098DE87-2870-4A69-B6C4-C18483A5A83E}|DiplomAE.csproj|C:\\Users\\USER\\source\\repos\\DiplomAE\\formcommonclasses.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0098DE87-2870-4A69-B6C4-C18483A5A83E}|DiplomAE.csproj|solutionrelative:formcommonclasses.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0098DE87-2870-4A69-B6C4-C18483A5A83E}|DiplomAE.csproj|C:\\Users\\USER\\source\\repos\\DiplomAE\\formadmin.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0098DE87-2870-4A69-B6C4-C18483A5A83E}|DiplomAE.csproj|solutionrelative:formadmin.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 10,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "FormAddAndFilter.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\DiplomAE\\FormAddAndFilter.cs",
+              "RelativeDocumentMoniker": "FormAddAndFilter.cs",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\DiplomAE\\FormAddAndFilter.cs",
+              "RelativeToolTip": "FormAddAndFilter.cs",
+              "ViewState": "AQIAADoAAAAAAAAAAAAQwF0AAAAqAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-10T18:32:30.37Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "FormEmployee.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\DiplomAE\\FormEmployee.Designer.cs",
+              "RelativeDocumentMoniker": "FormEmployee.Designer.cs",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\DiplomAE\\FormEmployee.Designer.cs",
+              "RelativeToolTip": "FormEmployee.Designer.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABYAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-10T11:38:13.141Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "FormAdmin.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\DiplomAE\\FormAdmin.Designer.cs",
+              "RelativeDocumentMoniker": "FormAdmin.Designer.cs",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\DiplomAE\\FormAdmin.Designer.cs",
+              "RelativeToolTip": "FormAdmin.Designer.cs",
+              "ViewState": "AQIAALMAAAAAAAAAAAAowMYAAAAOAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-10T11:37:55.139Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "FormEmployee.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\DiplomAE\\FormEmployee.cs",
+              "RelativeDocumentMoniker": "FormEmployee.cs",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\DiplomAE\\FormEmployee.cs",
+              "RelativeToolTip": "FormEmployee.cs",
+              "ViewState": "AQIAADgAAAAAAAAAAAAcwFIAAAAQAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-10T11:29:16.989Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "FormEmployee.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\DiplomAE\\FormEmployee.cs",
+              "RelativeDocumentMoniker": "FormEmployee.cs",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\DiplomAE\\FormEmployee.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "RelativeToolTip": "FormEmployee.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-10T11:28:58.645Z",
+              "EditorCaption": " [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "FormCommonClasses.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\DiplomAE\\FormCommonClasses.cs",
+              "RelativeDocumentMoniker": "FormCommonClasses.cs",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\DiplomAE\\FormCommonClasses.cs",
+              "RelativeToolTip": "FormCommonClasses.cs",
+              "ViewState": "AQIAAAUAAAAAAAAAAAAIwMIAAAAaAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-10T11:28:22.297Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "FormAddAndFilter.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\DiplomAE\\FormAddAndFilter.cs",
+              "RelativeDocumentMoniker": "FormAddAndFilter.cs",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\DiplomAE\\FormAddAndFilter.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "RelativeToolTip": "FormAddAndFilter.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-09T19:07:31.732Z",
+              "EditorCaption": " [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Global.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\DiplomAE\\Global.cs",
+              "RelativeDocumentMoniker": "Global.cs",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\DiplomAE\\Global.cs",
+              "RelativeToolTip": "Global.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAABUAAAAiAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-08T17:56:01.778Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "FormAdmin.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\DiplomAE\\FormAdmin.cs",
+              "RelativeDocumentMoniker": "FormAdmin.cs",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\DiplomAE\\FormAdmin.cs",
+              "RelativeToolTip": "FormAdmin.cs",
+              "ViewState": "AQIAAJsBAAAAAAAAAAAgwKsBAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-08T14:38:08.712Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "FormAdmin.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "DocumentMoniker": "C:\\Users\\USER\\source\\repos\\DiplomAE\\FormAdmin.cs",
+              "RelativeDocumentMoniker": "FormAdmin.cs",
+              "ToolTip": "C:\\Users\\USER\\source\\repos\\DiplomAE\\FormAdmin.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "RelativeToolTip": "FormAdmin.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-08T14:06:15.756Z",
+              "EditorCaption": " [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

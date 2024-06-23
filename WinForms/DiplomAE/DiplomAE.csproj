@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0098DE87-2870-4A69-B6C4-C18483A5A83E}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>DiplomAE</RootNamespace>
+    <AssemblyName>DiplomAE</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ChatUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ChatUserControl.Designer.cs">
+      <DependentUpon>ChatUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormAddAndFilter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAddAndFilter.Designer.cs">
+      <DependentUpon>FormAddAndFilter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAdmin.Designer.cs">
+      <DependentUpon>FormAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormAdmin_Moderation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAdmin_Reports.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCommonClasses.cs" />
+    <Compile Include="FormEmployee.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmployee.Designer.cs">
+      <DependentUpon>FormEmployee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormProfile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProfile.Designer.cs">
+      <DependentUpon>FormProfile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Global.cs" />
+    <Compile Include="RegEnter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RegEnter.Designer.cs">
+      <DependentUpon>RegEnter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ChatUserControl.resx">
+      <DependentUpon>ChatUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAddAndFilter.resx">
+      <DependentUpon>FormAddAndFilter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAdmin.resx">
+      <DependentUpon>FormAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmployee.resx">
+      <DependentUpon>FormEmployee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProfile.resx">
+      <DependentUpon>FormProfile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="RegEnter.resx">
+      <DependentUpon>RegEnter.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resourses\icon.ico" />
+    <Content Include="Resourses\photo0.jpg" />
+    <Content Include="Resourses\photo1.jpg" />
+    <Content Include="Resourses\photo10.jpg" />
+    <Content Include="Resourses\photo11.jpg" />
+    <Content Include="Resourses\photo12.jpg" />
+    <Content Include="Resourses\photo2.jpg" />
+    <Content Include="Resourses\photo3.jpg" />
+    <Content Include="Resourses\photo4.jpg" />
+    <Content Include="Resourses\photo5.jpg" />
+    <Content Include="Resourses\photo6.jpg" />
+    <Content Include="Resourses\photo7.jpg" />
+    <Content Include="Resourses\photo8.jpg" />
+    <Content Include="Resourses\photo9.jpg" />
+    <Content Include="Resourses\photoem1.png" />
+    <Content Include="Resourses\photoem10.png" />
+    <Content Include="Resourses\photoem11.png" />
+    <Content Include="Resourses\photoem12.png" />
+    <Content Include="Resourses\photoem13.png" />
+    <Content Include="Resourses\photoem2.png" />
+    <Content Include="Resourses\photoem3.png" />
+    <Content Include="Resourses\photoem4.png" />
+    <Content Include="Resourses\photoem5.png" />
+    <Content Include="Resourses\photoem6.png" />
+    <Content Include="Resourses\photoem7.png" />
+    <Content Include="Resourses\photoem8.png" />
+    <Content Include="Resourses\photoem9.png" />
+    <Content Include="Resourses\photoew1.png" />
+    <Content Include="Resourses\photoew10.png" />
+    <Content Include="Resourses\photoew11.png" />
+    <Content Include="Resourses\photoew12.png" />
+    <Content Include="Resourses\photoew13.png" />
+    <Content Include="Resourses\photoew14.png" />
+    <Content Include="Resourses\photoew15.png" />
+    <Content Include="Resourses\photoew16.png" />
+    <Content Include="Resourses\photoew17.png" />
+    <Content Include="Resourses\photoew18.png" />
+    <Content Include="Resourses\photoew19.png" />
+    <Content Include="Resourses\photoew2.png" />
+    <Content Include="Resourses\photoew20.png" />
+    <Content Include="Resourses\photoew21.png" />
+    <Content Include="Resourses\photoew22.png" />
+    <Content Include="Resourses\photoew23.png" />
+    <Content Include="Resourses\photoew24.png" />
+    <Content Include="Resourses\photoew3.png" />
+    <Content Include="Resourses\photoew4.png" />
+    <Content Include="Resourses\photoew5.png" />
+    <Content Include="Resourses\photoew6.png" />
+    <Content Include="Resourses\photoew7.png" />
+    <Content Include="Resourses\photoew8.png" />
+    <Content Include="Resourses\photoew9.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
