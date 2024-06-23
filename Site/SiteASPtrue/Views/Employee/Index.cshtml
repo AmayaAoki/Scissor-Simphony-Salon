@@ -1,0 +1,45 @@
+﻿@model EmployeeViewModel
+@{
+    ViewData["Title"] = "Мастера";
+}
+
+<h1>Наши мастера</h1>
+
+<input type="search" id="searchInput" style="background-color: #ffffff7d;" class="form-control" placeholder="Найти..." aria-label="Search">
+
+<div class="row mb-2">
+    @{
+        foreach (var service in Model.AllEmployee)
+        {
+            <div class="col-lg-4">
+                <div class="our-team">
+                    <div class="picture">
+                        <img class="img-fluid" src="~/Resources/empp/@(service.Photo).png" alt="Изображение" style="max-width: 100%; max-height: 100%;">
+                    
+                        <h3 class="name">@service.FIO</h3>
+                        <form method="post" asp-controller="Employee" asp-action="Save">
+                            <input type="hidden" name="serviceName" value="@service.FIO" />
+                            <button type="submit" style="margin: 10px auto" class="buttonCenter">Записаться</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</div>
+
+<script>
+    document.getElementById('searchInput').addEventListener('input', function () {
+        var searchValue = this.value.toLowerCase(); // Приводим введенный текст к нижнему регистру для удобства сравнения
+        var services = document.querySelectorAll('.our-team'); // Получаем все элементы с классом 'our-team'
+        services.forEach(function (service) {
+            var serviceName = service.querySelector('.name').textContent.toLowerCase(); // Получаем имя мастера и приводим к нижнему регистру
+            // Проверяем, содержит ли имя мастера введенный текст. Если содержит - отображаем элемент, иначе скрываем
+            if (serviceName.includes(searchValue)) {
+                service.style.display = 'block';
+            } else {
+                service.style.display = 'none';
+            }
+        });
+    });
+</script>

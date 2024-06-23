@@ -1,0 +1,55 @@
+﻿<!-- // model IEnumerable // SiteASP.Models.Services//  -->
+@model ServicesListViewModel;
+
+@{
+    ViewData["Title"] = "Услуги";
+}
+<h1>Услуги</h1>
+<!-- <h1>@ViewBag.Category</h1> -->
+<!-- <h1>@Model.servvCategory</h1> -->
+
+<input type="search" id="searchInput" style="background-color: #ffffff7d;" class="form-control" placeholder="Найти..." aria-label="Search">
+
+<div class="row mb-2">
+    @{
+        foreach (var service in Model.AllServices)
+        {          
+            <div class="col-lg-4">
+                <div class="our-team">
+                    <div class="picture2">
+                            <img class="imgserv"  src="/Resources/services/@(service.Photo).png" alt="@service.Photo" />
+                            <div class="servrows" style="position: relative;">
+                                <h2 style="word-wrap: break-word;overflow-wrap: break-word;">@service.ProcedureName</h2>
+                                <p>@service.Description</p>
+                                <p>Цена: @service.Cost.ToString("c")</p>
+                            </div>
+                            <form method="post" asp-controller="Services" asp-action="Save">
+                                <input type="hidden" name="serviceName" value="@service.ProcedureName" />
+                                <button type="submit" class="buttonCenter">Записаться</button>
+                            </form>
+                    </div>
+                </div>
+                
+            </div>
+        }
+    }
+</div>
+
+
+<script>
+    document.getElementById('searchInput').addEventListener('input', function () {
+        var searchValue = this.value.toLowerCase(); // Приводим введенный текст к нижнему регистру для удобства сравнения
+
+        var services = document.querySelectorAll('.our-team'); // Получаем все элементы с классом 'our-team'
+
+        services.forEach(function (service) {
+            var serviceName = service.querySelector('.servrows h2').textContent.toLowerCase(); // Получаем название услуги и приводим к нижнему регистру
+            // Проверяем, содержит ли название услуги введенный текст. Если содержит - отображаем элемент, иначе скрываем
+            if (serviceName.includes(searchValue)) {
+                service.style.display = 'block';
+            } else {
+                service.style.display = 'none';
+            }
+        });
+    });
+</script>

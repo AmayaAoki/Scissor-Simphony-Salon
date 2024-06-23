@@ -1,0 +1,14 @@
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=ADMIN\\sqlexpress;Database=diplomfill; Trusted_Connection=True; MultipleActiveResultSets=true; TrustServerCertificate=true;"
+    //"DefaultConnection": "Server=DESKTOP-VD7C8RL\\SQLEXPRESS;Database=dimplomfilled; Trusted_Connection=True; MultipleActiveResultSets=true; TrustServerCertificate=true;"
+  },
+
+  "AllowedHosts": "*"
+}

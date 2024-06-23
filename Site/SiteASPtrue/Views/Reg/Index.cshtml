@@ -1,0 +1,111 @@
+﻿@model Reg
+
+@{
+    ViewData["Title"] = "Регистрация";
+}
+
+
+<!-- Оповещение о успешной регистрации -->
+@if (TempData["SuccessMessage"] != null)
+{
+    <div id="successAlert" class="alert alert-success" role="alert">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div id="successAlert" class="alert alert-danger" role="alert">
+        @TempData["ErrorMessage"]
+    </div>
+
+
+}
+
+<div class="blur-background1">
+    <img class="bgimg" src="/Resources/regent.gif" alt="Фоновое изображение">
+    <div class="background2">
+        <div class="background">
+            <div class="shape1"></div>
+            <div class="shape2"></div>
+            <form class="formenter" method="post" asp-controller="Reg" asp-action="Check">
+                <h1>Регистрация</h1>
+                <label asp-for="Login"></label>
+                <input asp-for="Login" />
+                <span asp-validation-for="Login"></span>
+
+                <label asp-for="Password"></label>
+                <input asp-for="Password" />
+                <span asp-validation-for="Password"></span>
+
+                <label asp-for="FIO"></label>
+                <input asp-for="FIO" />
+                <span asp-validation-for="FIO"></span>
+
+                <label asp-for="Email"></label>
+                <input asp-for="Email" />
+                <span asp-validation-for="Email"></span>
+
+                <label asp-for="Phone"></label>
+                <input asp-for="Phone" />
+                <span asp-validation-for="Phone"></span>
+
+                <label asp-for="Photo"></label>
+                <div class="row g-2 row-cols-1 row-cols-lg-2" style="margin:0 0; padding:0 0">
+                    <div>
+                        <select id="photo" name="Photo" onchange="updateImage()">
+                            <!-- Здесь будет генерироваться список опций -->
+                        </select>
+                    </div>
+                    <div style="text-align: center;">
+                        <img id="selectedImage" src="~/Resources/users/photou1.jpg" alt="Изображение" style="height:100px; border-radius: 50%;">
+                    </div>
+                </div>
+                <span asp-validation-for="Photo"></span>
+                <button type="submit">Зарегистрироваться</button>
+                <a style="text-decoration:none; color: #ffffff73; padding:10px 0px 0px 50px">уже есть аккаунт?</a>
+                <a href="/enter" style="text-decoration:none; color: #ffffff73;">войти</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+<!-- смена картинки-->
+<script>
+    function updateImage() {
+        var selectElement = document.getElementById('photo');
+        var selectedOption = selectElement.options[selectElement.selectedIndex];
+        var imageName = selectedOption.value; // Получаем имя изображения без расширения
+        var imageUrl = '@Url.Content("~/Resources/users/")' + imageName + ".jpg"; // Генерируем полный URL-адрес к изображению
+        var imageElement = document.getElementById('selectedImage');
+        imageElement.src = imageUrl;
+    }
+
+    // Функция для генерации элементов option
+    function generateOptions() {
+        var selectElement = document.getElementById('photo');
+        var avatarsCount = 20; // Количество аватаров
+        for (var i = 1; i <= avatarsCount; i++) {
+            var option = document.createElement('option');
+            option.value = 'photou' + i;
+            option.textContent = 'Аватар ' + i;
+            selectElement.appendChild(option);
+        }
+    }
+    // Вызываем функцию для генерации option при загрузке страницы
+    window.onload = function () {
+        generateOptions();
+    };
+</script>
+
+<!-- Скрипт для автоматического скрытия оповещения -->
+<script>
+    // Ждем 5 секунд и скрываем оповещение
+    setTimeout(function () {
+        document.getElementById("successAlert").style.display = "none";
+    }, 5000);
+</script>

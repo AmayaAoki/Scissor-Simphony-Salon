@@ -1,0 +1,86 @@
+﻿@model Appointments
+@{
+    ViewData["Title"] = "Запись на услугу";
+}
+
+<h1 style="font-weight:bold">Запись на услугу</h1>
+<!-- Оповещение о успешной регистрации -->
+@if (TempData["SuccessMessage"] != null)
+{
+    <div id="successAlert" class="alert alert-success" role="alert">
+        @TempData["SuccessMessage"]
+    </div>
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <div id="successAlert" class="alert alert-danger" role="alert">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+<div class="blur-background1">
+    <img class="bgimg" src="/Resources/record.gif" alt="Фоновое изображение">
+    <div class="background2">
+        <form class="formenter2" method="post" asp-controller="Appointments" asp-action="Save">
+            <div>
+                <label asp-for="EmployeeID">Мастер:</label>
+                <select asp-for="EmployeeID" asp-items="@ViewBag.Employee"></select>
+                <span asp-validation-for="EmployeeID"></span>
+            </div>
+            <div>
+                <label asp-for="ServiceID">Услуга:</label>
+                <select asp-for="ServiceID" asp-items="@ViewBag.Service"></select>
+                <span asp-validation-for="ServiceID"></span>
+            </div>
+            <div>
+                <label asp-for="Date">Дата:</label>
+                <input type="date" name="Date" asp-for="Date" asp-format="{0:yyyy-MM-dd}" min="@DateTime.Now.AddDays(2).ToString("yyyy-MM-dd")" />
+                <span asp-validation-for="Date"></span>
+            </div>
+            <div>
+                <label asp-for="EventTime">Время:</label>
+                <select asp-for="EventTime" asp-items="@ViewBag.EventTime"></select>
+                <span asp-validation-for="EventTime"></span>
+            </div>
+
+            <button type="submit">Записаться</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('form.formenter2').submit(function (event) {
+            event.preventDefault();
+            var formData = $(this).serialize();
+            $.ajax({
+                type: "POST",
+                url: "/Appointments/Save",
+                data: formData,
+                success: function (response) {
+                    if (response.success) {
+                        alert(response.message);
+                        window.location.href = "/Appointments/Index";
+                    } else {
+                        if (response.occupiedTimes) {
+                            alert(response.message + " Занятые времена: " + response.occupiedTimes);
+                        } else {
+                            alert(response.message);
+                        }
+                    }
+                },
+                error: function () {
+                    alert('Произошла ошибка при сохранении записи.');
+                }
+            });
+        });
+    });
+</script>
+
+<!-- Скрипт для автоматического скрытия оповещения -->
+<script>
+    // Ждем 5 секунд и скрываем оповещение
+    setTimeout(function () {
+        document.getElementById("successAlert").style.display = "none";
+    }, 5000);
+</script>

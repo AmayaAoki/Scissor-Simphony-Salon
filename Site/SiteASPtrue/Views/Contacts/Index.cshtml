@@ -1,0 +1,39 @@
+﻿@model Contact
+
+@{
+    ViewData["Title"] = "Обратная связь";
+}
+<h1>Обратная связь</h1>
+
+<!-- Оповещение о успешной регистрации -->
+@if (TempData["SuccessMessage"] != null)
+{
+    <div id="successAlert" class="alert alert-success" role="alert">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+<div class="blur-background1">
+    <img class="bgimg" src="/Resources/faq.gif" alt="Фоновое изображение"> <!-- Используйте свой путь к изображению -->
+    <div class="background2">
+        <div class="background">
+            <form class="formenter" method="post" asp-asp-controller="Contacts" asp-action="Check">
+                <label asp-for="UserEmail"></label>
+                <input asp-for="UserEmail" />
+                <span asp-validation-for="UserEmail"></span>
+                <label asp-for="Text"></label>
+                <input asp-for="Text" />
+                <span asp-validation-for="Text"></span>
+                <button type="submit">Отправить</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Скрипт для автоматического скрытия оповещения -->
+<script>
+    // Ждем 5 секунд и скрываем оповещение
+    setTimeout(function () {
+        document.getElementById("successAlert").style.display = "none";
+    }, 5000);
+</script>

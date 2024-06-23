@@ -1,0 +1,278 @@
+﻿@model SiteASP.ViewModels.AppointmentsViewModel
+@{
+    ViewData["Title"] = "Записи";
+}
+<h1>Записи</h1>
+
+
+@{
+    // Находим информацию о ближайшей записи
+    var nearestAppointment = Model.AllAppointments?
+        .Where(a => a.Date > DateTime.Today && a.Status != "Выполнен")
+        .OrderBy(a => a.Date)
+        .FirstOrDefault();
+    // Инициализируем переменную qrData
+    string qrData = "";
+    // Получаем все записи на ближайшую дату
+    var appointmentsOnNearestDate = (Model.AllAppointments?
+    .Where(a => a.Date == nearestAppointment?.Date && a.Status != "Выполнен")
+    .ToList()) ?? new List<Appointments>();
+    // Формируем данные для QR-кода
+    if (nearestAppointment != null && appointmentsOnNearestDate.Any() && Model.AllServices != null)
+    {
+        var formattedAppointments = new List<string>();
+        int index = 1;
+        decimal totalCost = 0;
+        foreach (var appointment in appointmentsOnNearestDate)
+        {
+            var service = Model.AllServices.FirstOrDefault(s => s.ProcedureName == appointment.ServiceID);
+            var cost = service?.Cost ?? 0;
+            totalCost += cost;
+            formattedAppointments.Add($"{index}. Мастер: {appointment.EmployeeID}, Услуга: {appointment.ServiceID}, Дата: {appointment.Date?.ToShortDateString()}, Время: {appointment.EventTime}, Статус: {appointment.Status}, - Цена: {cost} руб.");
+            index++;
+        }
+        qrData = string.Join("\n", formattedAppointments) + $"\nИТОГ: {totalCost} руб";
+    }
+}
+
+<!-- Панель с информацией о ближайшей записи и QR-кодом -->
+<div class="card2" style="padding: 0 0 0 0; margin: 0 30% 0 20%; width: 60%">
+    <div style=" align-items: center; display: flex; ">
+        <div class="card2__content" style="flex: 1;">
+            <h2 style="color:white">Ближайшие записи:</h2>
+            @if (nearestAppointment != null)
+            {
+                // Отображаем информацию о ближайших записях
+                <p>на @nearestAppointment.Date?.ToShortDateString():</p>
+                <ul>
+                    @foreach (var appointment in appointmentsOnNearestDate)
+                    {
+                        var service = Model.AllServices?.FirstOrDefault(s => s.ProcedureName == appointment.ServiceID);
+                        var cost = service?.Cost ?? 0;
+
+                        <li>
+                            Услуга: @appointment.ServiceID, - Цена: @cost руб,<br>
+                            Мастер: @appointment.EmployeeID,<br>
+                            Время: @appointment.EventTime.
+                        </li>
+                    }
+                </ul>
+                <p>ИТОГО: @(appointmentsOnNearestDate.Sum(a => Model.AllServices?.FirstOrDefault(s => s.ProcedureName == a.ServiceID)?.Cost ?? 0)) руб.</p>
+            }
+            else
+            {
+                <p>Нет ближайших записей</p>
+            }
+        </div>
+        <div class="card2__content" style="flex: 1;">
+            <p>Покажите QR-код при входе</p>
+            @if (nearestAppointment != null)
+            {
+                // Отображаем QR-код
+                <img src="@Url.Action("GenerateQRCode", "Appointments", new { qrData })" alt="QR Code" style="width:200px ; height:200px; align-self:center;">
+            }
+        </div>
+    </div>
+</div>
+
+
+<!-- Панель фильтрации -->
+<div class="card2" style="padding: 0 0 0 0; margin: 5% 30% 0 20%; width: 60%;">
+    <div style="align-items: center;">
+        <h2 style="color:white">Фильтровать список записей по статусу:</h2>
+        <form id="filterForm" method="post" asp-controller="Appointments" asp-action="Records">
+            <select id="filterSelect" class="form-select" name="filtervalue">
+                <option value="Без фильтра">Без фильтра</option>
+                <option value="Создан">Создан</option>
+                <option value="В процессе">В процессе</option>
+                <option value="Выполнен">Выполнен</option>
+            </select>
+            <div class="col-lg-4">
+                <button type="submit">Применить</button>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+
+<!-- Таблица записей -->
+<div class="row py-5">
+    <div class="col-lg-10 mx-auto">
+        <div class="tablerec">
+            <table id="example" style="width:100%" class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th><button name="0" onclick="sortTable(0)">Мастер</button></th>
+                        <th><button name="1" onclick="sortTable(1)">Услуга</button></th>
+                        <th><button name="2" onclick="sortTable(2)">Дата</button></th>
+                        <th><button name="3" onclick="sortTable(3)">Время</button></th>
+                        <th><button name="4" onclick="sortTable(4)">Статус</button></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.AllAppointments != null)
+                    {
+                        @foreach (var appointment in Model.AllAppointments)
+                        {
+                            <tr data-appointment-id="@appointment.Id" data-name="@appointment.EmployeeID" data-surname="@appointment.ServiceID" data-date="@appointment.Date?.ToShortDateString()" data-surname="@appointment.EventTime" data-toggle="modal" data-target="#myModal">
+                                <td>@appointment.EmployeeID</td>
+                                <td>@appointment.ServiceID</td>
+                                <td>@appointment.Date?.ToShortDateString()</td>
+                                <td>@appointment.EventTime</td>
+                                <td>@appointment.Status</td>
+                                <td style="display: none;">@appointment.EmployeeID</td>
+                                <td style="display: none;">@appointment.ServiceID</td>
+                                <td style="display: none;">@appointment.Date?.ToShortDateString()</td>
+                                <td style="display: none;">@appointment.EventTime</td>
+                                <td style="display: none;">@appointment.Status</td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- сортировка в таблице -->
+<script>
+    let ascendingOrder = false;
+    let currentColumn = 2; // Индекс столбца "Дата" (начиная с 0)
+    // Функция для сортировки таблицы при загрузке страницы
+    window.onload = function () {
+        sortTable(currentColumn);
+    };
+    function sortTable(columnIndex) {
+        // Проверяем, нужно ли менять направление сортировки для текущего столбца
+        if (currentColumn === columnIndex) {
+            ascendingOrder = !ascendingOrder;
+        } else {
+            // Если кликнули на другой столбец, сортировка будет по убыванию
+            ascendingOrder = false;
+            currentColumn = columnIndex;
+        }
+        let table, rows, switching, i, x, y, shouldSwitch;
+        table = document.getElementById("example");
+        switching = true;
+        while (switching) {
+            switching = false;
+            rows = table.rows;
+            for (i = 1; i < (rows.length - 1); i++) {
+                shouldSwitch = false;
+                x = rows[i].getElementsByTagName("td")[columnIndex];
+                y = rows[i + 1].getElementsByTagName("td")[columnIndex];
+                if (ascendingOrder) {
+                    if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                } else {
+                    if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                }
+            }
+            if (shouldSwitch) {
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                switching = true;
+            }
+        }
+        // Обновляем текст кнопки с учетом направления сортировки
+        let button = document.getElementsByTagName("th")[columnIndex].getElementsByTagName("button")[0];
+        button.innerHTML = button.innerHTML.split(' ')[0] + (ascendingOrder ? ' ↓' : ' ↑');
+    }
+</script>
+
+
+<!-- фильтрация заказов -->
+<script>
+     document.addEventListener("DOMContentLoaded", function () {
+         // Восстанавливаем выбранное значение фильтра из локального хранилища
+         var selectedFilter = localStorage.getItem("selectedFilter");
+         if (selectedFilter) {
+             document.getElementById("filterSelect").value = selectedFilter;
+         }
+         // Обрабатываем событие изменения значения фильтра
+         document.getElementById("filterSelect").addEventListener("change", function () {
+             localStorage.setItem("selectedFilter", this.value);
+         });
+     });
+</script>
+
+
+<!-- Скрипт для открытия модального окна Скрипт для заполнения формы при клике на строку-->
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('#example tbody tr').forEach(function (row) {
+            row.addEventListener('click', function () {
+                var employeeId = this.querySelector('td:nth-child(1)').innerText;
+                var serviceId = this.querySelector('td:nth-child(2)').innerText;
+                var date = this.querySelector('td:nth-child(3)').innerText;
+                var status = this.querySelector('td:nth-child(4)').innerText;
+                var data = {
+                    employeeId: employeeId,
+                    serviceId: serviceId,
+                    date: date, // Отправляем строку даты
+                    status: status
+                };
+                console.log("Отправляемые данные: ", data);
+                fetch('/Appointments/SaveSelectedRow', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Success:', data);
+                        $('#myModalContainer').html(response);
+                        $('#myModal').modal('show');
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                    });
+            });
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('#example tbody tr').forEach(function (row) {
+            row.addEventListener('click', function () {
+                var employeeId = this.querySelector('td:nth-child(1)').innerText;
+                var serviceId = this.querySelector('td:nth-child(2)').innerText;
+                var date = this.querySelector('td:nth-child(3)').innerText;
+                var time = this.querySelector('td:nth-child(4)').innerText;
+                var status = this.querySelector('td:nth-child(5)').innerText;
+                var data = {
+                    employeeId: employeeId,
+                    serviceId: serviceId,
+                    date: date, // Отправляем строку даты
+                    time: time,
+                    status: status
+                };
+                console.log("Отправляемые данные: ", data);
+                fetch('/Appointments/SaveSelectedRow', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Success:', data);
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                    });
+            });
+        });
+    });
+</script>

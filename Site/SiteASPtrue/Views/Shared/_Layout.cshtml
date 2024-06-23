@@ -1,0 +1,355 @@
+﻿<!-- Шаблоны: шапка, низ-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Scissor Symphony Salon</title>
+    <link rel="shortcut icon" type="image/x-icon" href="~/favicon.ico" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/bootstrap.min.css" asp-append-version="true" />
+</head>
+
+<body class="body-f">
+    <script scr="~/css/bootstrap.min.js" asp-append-version="true"></script>
+    <button id="upwardButton" class="upward" onclick="scrollTopTop()">Наверх ▲</button>
+    <header>
+        <div class="top-row">
+            <span class="logo">Scissor Symphony Salon</span>
+            <div class="auth-links">
+                @if (GlobalClass.IsAutorized)
+                {
+                    <div class="profile">
+                        <div class="dropdown">
+                            <button class="dropbtn">
+                                <img src="~/Resources/users/@(GlobalClass.Photo).jpg" style="width: 32px; height: 32px" alt="Фото профиля">
+                                @GlobalClass.FIO
+                            </button>
+                            <div class="dropdown-content">
+                                <button onclick="window.location.href='/profile'">Профиль</button>
+                                <button onclick="window.location.href='/appointments/records'">Записи</button>
+                                <form method="post" asp-controller="Enter" asp-action="Logout" class="form-inline">
+                                    <button type="submit" class="btn btn-link text-danger">Выйти</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <button onclick="window.location.href='/enter'">Авторизация</button>
+                    <button onclick="window.location.href='/reg'">Регистрация</button>
+                }
+            </div>
+        </div>
+        <nav class="bottom-row">
+            <a href="/">Главная</a>
+            <a href="/services">Услуги</a>
+            <a href="/employee">Наши мастера</a>
+            <a href="/reviews">Отзывы</a>
+            <a href="/contacts">Обратная связь</a>                 
+        </nav>
+    </header>
+
+    <!-- Модальное окно  записей-->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Информация о записи</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="modalBody">
+                    <p><strong>Мастер:</strong> <span id="modalEmployeeID"></span></p>
+                    <p><strong>Услуга:</strong> <span id="modalServiceID"></span></p>
+                    <p><strong>Дата:</strong> <span id="modalDate"></span></p>
+                    <p><strong>Время:</strong> <span id="modalEventTime"></span></p>
+                    <p><strong>Статус:</strong> <span id="modalStatus"></span></p>
+                </div>
+                <div class="modal-footer" id="modalFooter">
+                    <button type="button" class="btn btn-danger" id="cancelAppointmentBtn">Отменить запись</button>
+                    <button type="button" class="btn btn-warning" id="moveAppointmentBtn">Перенести запись</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно подтверждения удаления аккаунта -->
+    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Подтверждение</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Вы точно хотите удалить аккаунт?</p>
+                    <p>Действие нельзя будет отменить.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" id="deleteConfirmBtn">Удалить</button>
+                    <button type="button" class="btn btn-warning" id="moveAppointmentBtn" data-dismiss="modal">Отменить</button>
+                    <!-- Дополнительные кнопки или элементы управления -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- шапка -->
+    <div style="position: relative; text-align: center;">
+        <img src="~/Resources/salon.jpg" alt="Парикмахерский салон" style="width: 100%; height: 400px; object-fit: cover;">
+        <div style="position: absolute; top: 30%; left: 50%; transform: translate(-50%, -50%); color: white; font-size: 50px; font-weight:bold;">Парикмахерская <br>Scissor Symphony Salon</div>
+        <div style="position: absolute; top: 60%; left: 50%; transform: translate(-50%, -50%); color: white; font-size: 20px;">Искусство преображения: ваш лучший выбор для стиля и уверенности</div>
+    </div>
+    <main>
+        @RenderBody()
+    </main>
+    <footer>
+        ©️2024 Scissor Symphony Salon <br />
+        Все права защищены
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@latest"></script>
+    <!-- Скрипты Bootstrap для модального окна-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <!-- Модальное окно записей скрипт-->
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('#example tbody tr').forEach(function (row) {
+                row.addEventListener('click', function () {
+                    var employeeId = this.querySelector('td:nth-child(1)').innerText;
+                    var serviceId = this.querySelector('td:nth-child(2)').innerText;
+                    var date = this.querySelector('td:nth-child(3)').innerText;
+                    var time = this.querySelector('td:nth-child(4)').innerText.trim(); // Получаем текст из ячейки и удаляем лишние пробелы
+                    var status = this.querySelector('td:nth-child(5)').innerText;
+                    // Преобразование времени в формат HH:mm:ss, если необходимо
+                    var formattedTime = time.length === 5 ? `${time}:00` : time;
+                    var data = {
+                        employeeId: employeeId,
+                        serviceId: serviceId,
+                        date: date,
+                        eventTime: formattedTime, // Используем отформатированное время
+                        status: status
+                    };
+                    console.log("Отправляемые данные: ", data);
+                    // Обновляем содержимое модального окна
+                    document.getElementById('modalEmployeeID').innerText = data.employeeId;
+                    document.getElementById('modalServiceID').innerText = data.serviceId;
+                    document.getElementById('modalDate').innerText = data.date;
+                    document.getElementById('modalEventTime').innerText = data.eventTime;
+                    document.getElementById('modalStatus').innerText = data.status;
+                    // Скрываем кнопки, если статус "Выполнен"
+                    var cancelBtn = document.getElementById('cancelAppointmentBtn');
+                    var moveBtn = document.getElementById('moveAppointmentBtn');
+                    if (data.status === "Выполнен") {
+                        cancelBtn.style.display = 'none';
+                        moveBtn.style.display = 'none';
+                    } else {
+                        cancelBtn.style.display = 'inline-block';
+                        moveBtn.style.display = 'inline-block';
+                    }
+                    // Открываем модальное окно
+                    $('#myModal').modal('show');
+                    // Отправка данных на сервер
+                    fetch('/Appointments/SaveSelectedRow', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log('Success:', data);
+                        })
+                        .catch((error) => {
+                            console.error('Error:', error);
+                        });
+                });
+            });
+        });
+    </script>
+
+   
+    <script>
+        $(document).ready(function () {
+            // Save the original content
+            var originalTitle = $('#exampleModalLabel').text();
+            var originalBody = $('#modalBody').html();
+            var originalFooter = $('#modalFooter').html();
+            function restoreOriginalContent() {
+                $('#exampleModalLabel').text(originalTitle);
+                $('#modalBody').html(originalBody);
+                $('#modalFooter').html(originalFooter);
+                setEventHandlers(); // Reattach event handlers to the restored buttons
+            }
+            function setEventHandlers() {
+                $('#cancelAppointmentBtn').on('click', function () {
+                    $('#exampleModalLabel').text('Отмена записи');
+                    $('#modalBody').html('<p>Вы точно хотите отменить запись?</p>');
+                    $('#modalFooter').html(`
+                        <button type="button" class="btn btn-secondary" id="cancelModalBtn">Нет</button>
+                        <button type="button" class="btn btn-danger" id="confirmCancelBtn">Да</button>
+                    `);
+                    $('#confirmCancelBtn').on('click', function () {
+                        var appointmentId = @GlobalClass.AppointmentId; // Получите идентификатор записи из скрытого поля или иного источника
+                        $.ajax({
+                            type: "POST",
+                            url: "/Appointments/CancelAppointment",
+                            data: { appointmentId: appointmentId },
+                            success: function (response) {
+                                if (response.success) {
+                                    alert(response.message);
+                                    $('#myModal').modal('hide');
+                                    restoreOriginalContent();
+                                    location.reload(); // Обновите страницу или выполните иное действие
+                                } else {
+                                    alert(response.message);
+                                    
+                                }
+                            },
+                            error: function () {
+                                alert('Произошла ошибка при отмене записи.');
+                            }
+                        });
+                    });
+                    $('#cancelModalBtn').on('click', function () {
+                        $('#myModal').modal('hide');
+                        
+                    });
+                });
+                $('#moveAppointmentBtn').on('click', function () {
+                    $('#exampleModalLabel').text('Перенос записи');
+                    var today = new Date();
+                    var tomorrow = new Date(today);
+                    tomorrow.setDate(tomorrow.getDate() + 1);
+                    var month = (tomorrow.getMonth() + 1).toString().padStart(2, '0');
+                    var day = tomorrow.getDate().toString().padStart(2, '0');
+                    var year = tomorrow.getFullYear();
+                    var minDate = `${year}-${month}-${day}`;
+                    // Функция для генерации массива времени с интервалом в 30 минут
+                    function generateTimeOptions() {
+                        var times = [];
+                        var startTime = new Date();
+                        startTime.setHours(9, 0, 0, 0); // 9:00 AM
+                        var endTime = new Date();
+                        endTime.setHours(18, 0, 0, 0); // 6:00 PM
+
+                        while (startTime <= endTime) {
+                            var hours = startTime.getHours().toString().padStart(2, '0');
+                            var minutes = startTime.getMinutes().toString().padStart(2, '0');
+                            times.push(`${hours}:${minutes}`);
+                            startTime.setMinutes(startTime.getMinutes() + 30);
+                        }
+                        return times;
+                    }
+                    // Генерация опций для выпадающего списка времени
+                    var timeOptions = generateTimeOptions().map(time => `<option value="${time}">${time}</option>`).join('');
+                    $('#modalBody').html(`
+                <p>На какую дату вы хотите перенести запись?</p>
+                <input type="date" id="newDate" class="form-control" min="${minDate}">
+                <p>На какое время вы хотите перенести запись?</p>
+                <select id="newTime" class="form-control">${timeOptions}</select>
+            `);
+                    $('#modalFooter').html(`
+                <button type="button" class="btn btn-secondary" id="cancelModalBtn">Отменить</button>
+                <button type="button" class="btn btn-warning" id="confirmMoveBtn">Перенести</button>
+            `);
+                    $('#confirmMoveBtn').on('click', function () {
+                        var newDate = $('#newDate').val();
+                        var newTime = $('#newTime').val();
+                        var appointmentId = $('#modalAppointmentID').val(); // Получить идентификатор записи из скрытого поля или иного источника
+                        if (newDate && newTime) {
+                            $.ajax({
+                                type: "POST",
+                                url: "/Appointments/MoveAppointment",
+                                data: { appointmentId: appointmentId, newDate: newDate, newTime: newTime },
+                                success: function (response) {
+                                    if (response.success) {
+                                        alert(response.message);
+                                        $('#myModal').modal('hide');
+                                        restoreOriginalContent();
+                                        location.reload(); // Обновить страницу 
+                                    } else {
+                                        if (response.occupiedTimes) {
+                                            alert(response.message + " Занятые времена: " + response.occupiedTimes);
+                                        } else {
+                                            alert(response.message);
+                                        }
+                                    }
+                                },
+                                error: function () {
+                                    alert('Произошла ошибка при переносе записи.');
+                                }
+                            });
+                        } else {
+                            alert('Пожалуйста, выберите дату и время.');
+                        }
+                    });
+
+                    $('#cancelModalBtn').on('click', function () {
+                        $('#myModal').modal('hide');
+                    });
+                });
+            }
+            setEventHandlers();
+            $('#myModal').on('hidden.bs.modal', function () {
+                restoreOriginalContent();
+            });
+        });
+    </script>
+
+    <!-- Модальное окно удаления скрипт-->
+    <script>
+        $(document).ready(function () {
+            $('#deleteConfirmBtn').click(function () {
+                $.ajax({
+                    url: '@Url.Action("Delete", "Profile")',
+                    type: 'POST',
+                    success: function (response) {
+                        // Обработка успешного ответа
+                        alert(response); // Отображаем сообщение об успешном удалении
+                        window.location.href = '/Home/Index'; // Перенаправляем на главную страницу
+                    },
+                    error: function (xhr, status, error) {
+                        // Обработка ошибки
+                        alert('Произошла ошибка при удалении аккаунта.');
+                    }
+                });
+            });
+        });
+    </script>
+
+    <!-- кнопка прокрутки -->
+    <script> 
+    window.addEventListener('scroll', function () {
+            var scrollButton = document.getElementById('upwardButton');
+            scrollButton.classList.toggle("active", window.scrollY > 500);
+    })
+    function scrollTopTop() {
+    window.scrollTo({
+    top: 0,
+    behavior:'smooth'
+    })
+    }
+    </script> <!-- выпадающий список -->
+    <script>
+        function toggleDropdown() {
+            var dropdown = document.getElementById("dropdownContent");
+            if (dropdown.style.display === "block") {
+                dropdown.style.display = "none";
+            } else {
+                dropdown.style.display = "block";
+            }
+        }
+    </script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

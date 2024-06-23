@@ -1,0 +1,38 @@
+﻿@model ReviewsViewModel;
+@{
+    ViewData["Title"] = "Отзывы";
+}
+<h1>Отзывы</h1>
+<form asp-controller="Reviews" asp-action="CreateReview" method="get">
+    <button type="submit" class="buttonCenter">Написать свой отзыв</button>
+</form>
+
+<div class="row mb-2">
+    @{
+        foreach (var service in Model.AllReviews)
+        {
+            <div class="col-lg-4">
+                <div class="formenter3">
+                    <div class="snip1157">
+                        <h1 style="word-wrap: break-word;overflow-wrap: break-word;">@service.Header</h1>
+                        <blockquote style="word-wrap: break-word;overflow-wrap: break-word;">
+                            @service.Text
+                            <div class="arrow"></div>
+                        </blockquote>
+                        <div class="row" style="padding: 0 0;">
+                            <div class="author col-6">
+                                <img src="~/Resources/users/@(service.UserPhoto).jpg" alt="@service.UserPhoto" />
+                            </div>
+                            <div class="author col-6">
+                                <h5 style="word-wrap: break-word;overflow-wrap: break-word;">@service.UserName</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</div>
+
+
+

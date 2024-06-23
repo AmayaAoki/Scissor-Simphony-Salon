@@ -1,0 +1,168 @@
+﻿@model User
+@{
+    ViewData["Title"] = "Профиль";
+}
+<h1>Редактирование профиля</h1>
+<!-- Оповещение о изменении профиля -->
+@if (TempData["SuccessMessage"] != null)
+{
+    <div id="successAlert" class="alert alert-success" role="alert">
+        @TempData["SuccessMessage"]
+    </div>
+}
+@if (TempData["CancelMessage"] != null)
+{
+    <div id="cancelAlert" class="alert alert-info" role="alert">
+        @TempData["CancelMessage"]
+    </div>
+}
+
+
+
+<div class="blur-background1">
+    <img class="bgimg" src="/Resources/profile.gif" alt="Фоновое изображение"> <!-- Используйте свой путь к изображению -->
+
+    <div class="background2">
+                <div class="row g-2 row-cols-1 row-cols-lg-2">
+                        <div>
+                            <form class="formenter" method="post" asp-controller="Profile" asp-action="Save">
+                                <div style="padding:  0 20px">
+                                    <label asp-for="FIO">ФИО:</label>
+                                    <input asp-for="FIO" />
+                                    <span asp-validation-for="FIO"></span>
+                                </div>
+                                <div style="padding:  0 20px">
+                                    <label asp-for="Login">Логин:</label>
+                                    <input asp-for="Login" />
+                                    <span asp-validation-for="Login"></span>
+                                </div>
+                                <div style="padding:  0 20px">
+                                    <label asp-for="Password">Пароль:</label>
+                                    <input asp-for="Password" />
+                                    <span asp-validation-for="Password"></span>
+                                </div>
+                                <div style="padding:  0 20px">
+                                    <label asp-for="Email">Почта:</label>
+                                    <input asp-for="Email" />
+                                    <span asp-validation-for="Email"></span>
+                                </div>
+                                <div style="padding:  0 20px">
+                                    <label asp-for="PhoneNumber">Номер телефона:</label>
+                                    <input asp-for="PhoneNumber" />
+                                    <span asp-validation-for="PhoneNumber"></span>
+                                </div>
+                                <div style="padding:  0 20px">
+                                    <label asp-for="Photo">Фотография:</label>
+                                    <select id="photo" name="Photo" onchange="updateImage()">
+                                        <!-- Здесь будет генерироваться список опций -->
+                                    </select>
+                                    <span asp-validation-for="Photo"></span>
+                                </div>
+                                <div style="padding:  20px 20px"> <input type="submit" value="Сохранить" /></div>
+                            </form>
+        
+                        </div>
+                        <div style="text-align: center;">
+                            <img id="selectedImage" src="~/Resources/users/@(GlobalClass.Photo).jpg" alt="Изображение" style="max-width: 100%; max-height: 100%; border-radius: 50%;">
+                            <form method="post" asp-controller="Profile" asp-action="CancelChanges">
+                                <input class="finput2" type="submit" value="Отменить изменения" />
+                            </form>
+                            <!-- Кнопка для удаления профиля -->
+                            <form method="post" asp-controller="Profile" asp-action="Delete">
+                                 <button type="button" class="finput2" data-toggle="modal" data-target="#myModal2" style="background-color:darkred">Удалить профиль</button>
+                            </form>
+                        </div>
+    
+
+                </div>
+    </div>
+
+
+</div>
+
+
+
+
+<!-- смена картинки-->
+<script>
+    // Функция для выбора опции в списке
+    function selectOption() {
+        var selectElement = document.getElementById('photo');
+        var selectedValue = '@GlobalClass.Photo'; // Значение фотографии из GlobalClass
+
+        // Проходим по всем опциям списка
+        for (var i = 0; i < selectElement.options.length; i++) {
+            var option = selectElement.options[i];
+
+            // Если значение опции совпадает с GlobalClass.Photo, делаем её выбранной
+            if (option.value === selectedValue) {
+                option.selected = true;
+                break; // Выходим из цикла после выбора опции
+            }
+        }
+
+        // После выбора опции, обновляем изображение
+        updateImage();
+    }
+
+
+    function updateImage() {
+        var selectElement = document.getElementById('photo');
+        var selectedOption = selectElement.options[selectElement.selectedIndex];
+        var imageName = selectedOption.value; // Получаем имя изображения без расширения
+        var imageUrl = '@Url.Content("~/Resources/users/")' + imageName + ".jpg"; // Генерируем полный URL-адрес к изображению
+
+        var imageElement = document.getElementById('selectedImage');
+        imageElement.src = imageUrl;
+    }
+
+    // Функция для генерации элементов option
+    function generateOptions() {
+        var selectElement = document.getElementById('photo');
+        var avatarsCount = 20; // Количество аватаров
+
+        for (var i = 1; i <= avatarsCount; i++) {
+            var option = document.createElement('option');
+            option.value = 'photou' + i;
+            option.textContent = 'Аватар ' + i;
+            selectElement.appendChild(option);
+        }
+    }
+
+    // Вызываем функцию для выбора опции при загрузке страницы
+    window.onload = function () {
+        generateOptions(); // Генерируем опции
+        selectOption(); // Выбираем опцию, соответствующую GlobalClass.Photo
+    };
+</script>
+
+<!-- Скрипт для автоматического скрытия оповещения -->
+<script>
+    // Ждем 5 секунд и скрываем оповещения
+    setTimeout(function () {
+        var successAlert = document.getElementById("successAlert");
+        if (successAlert) {
+            successAlert.style.display = "none";
+        }
+        var cancelAlert = document.getElementById("cancelAlert");
+        if (cancelAlert) {
+            cancelAlert.style.display = "none";
+        }
+    }, 3000);
+</script>
+
+
+<script>
+    
+    
+    function previewPhoto(event) {
+        var input = event.target;
+        var preview = document.getElementById('photoPreview');
+        preview.style.display = 'block';
+        var reader = new FileReader();
+        reader.onload = function () {
+            preview.src = reader.result;
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+</script>

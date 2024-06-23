@@ -1,0 +1,45 @@
+﻿@model EnterViewModel
+@{
+    ViewData["Title"] = "Авторизация";
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div id="successAlert" class="alert alert-danger" role="alert">
+        @TempData["ErrorMessage"]
+    </div>
+}
+<div class="blur-background1">
+    <img class="bgimg" src="/Resources/regent.gif" alt="Фоновое изображение"> <!-- Используйте свой путь к изображению -->
+        <div class="background2">
+        <div class="background">
+            <div class="shape1"></div>
+            <div class="shape2"></div>
+            <form class="formenter" method="post" asp-controller="Enter" asp-action="Check">
+                <h1>Авторизация</h1>
+                <label asp-for="Login"></label>
+                <input asp-for="Login" />
+                <span asp-validation-for="Login"></span> <!-- обработка ошибок-->
+                <label asp-for="Password"></label>
+                <input asp-for="Password" type="password" />
+                <span asp-validation-for="Password"></span>
+                <button type="submit">Войти</button>
+                <a style="text-decoration:none; color: #ffffff73; padding:10px;">нет аккаунта?</a>
+                <a href="/reg" style="text-decoration:none; color: #ffffff73;">зарегистрироваться</a>
+            </form>
+            </div>
+        </div>
+</div>
+
+
+<script>
+    function togglePasswordVisibility() {
+        var passwordInput = document.getElementById('passwordInput');
+        var showPasswordCheckbox = document.getElementById('showPasswordCheckbox');
+        if (showPasswordCheckbox.checked) {
+            passwordInput.type = 'text';
+        } else {
+            passwordInput.type = 'password';
+        }
+    }
+</script>
